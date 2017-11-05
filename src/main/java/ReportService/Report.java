@@ -4,6 +4,9 @@ public class Report {
 
     private String report;
 
+    public Report(String reportString) {
+
+    }
 
     public String getReport() {
         return report;

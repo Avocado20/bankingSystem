@@ -2,7 +2,7 @@ package InterestService;
 
 public class DebtInterestMechanism extends AbstractInterestMechanism implements InterestsMechanism {
 
-    public DebtInterestMechanism(double percentage, short howManyCapitalisations) {
+    public DebtInterestMechanism(double percentage, int howManyCapitalisations) {
         super(percentage, howManyCapitalisations);
     }
 

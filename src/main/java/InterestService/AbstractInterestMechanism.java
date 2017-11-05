@@ -1,16 +1,17 @@
 package InterestService;
 
-public abstract class AbstractInterestMechanism {
+public abstract class AbstractInterestMechanism implements InterestsMechanism{
 
     protected double percentage;
-    protected short howManyCapitalisations;
+    protected int howManyCapitalisations;
 
-    public double generateInterest(int amountOfMoney, double percentage, short howManyCapitalisation) {
+    public double generateInterest(int amountOfMoney, double percentage, int howManyCapitalisation) {
         return amountOfMoney * howManyCapitalisation * Math.abs(percentage);
     }
 
-    AbstractInterestMechanism(double percentage, short howManyCapitalisations) {
+    AbstractInterestMechanism(double percentage, int howManyCapitalisations) {
         this.percentage = percentage;
         this.howManyCapitalisations = howManyCapitalisations;
+        System.out.println("Mechanism: " + percentage + " " + howManyCapitalisations);
     }
 }

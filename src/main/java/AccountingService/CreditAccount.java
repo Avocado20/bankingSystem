@@ -5,7 +5,7 @@ import InterestService.InterestsMechanism;
 
 public class CreditAccount extends AbstractAccount {
 
-    public CreditAccount(AbstractClient owner, int initialAmountOfMoney, int initialDebit, InterestsMechanism interestsMechanism) {
-        super(owner, initialAmountOfMoney, initialDebit, interestsMechanism);
+    public CreditAccount(long id, AbstractClient owner, int initialAmountOfMoney, int initialDebit, InterestsMechanism interestsMechanism) {
+        super(id, owner, initialAmountOfMoney, initialDebit, interestsMechanism);
     }
 }

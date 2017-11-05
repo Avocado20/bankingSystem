@@ -1,8 +1,8 @@
 package InterestService;
 
-public class InvestInterestMechanism extends AbstractInterestMechanism implements InterestsMechanism{
+public class InvestInterestMechanism extends AbstractInterestMechanism {
 
-    public InvestInterestMechanism(double percentage, short howManyCapitalisations) {
+    public InvestInterestMechanism(double percentage, int howManyCapitalisations) {
         super(percentage, howManyCapitalisations);
     }
 
