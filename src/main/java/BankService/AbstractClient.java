@@ -15,15 +15,11 @@ public class AbstractClient {
     private String adres;
     private List<AbstractAccount> accounts;
 
-    public AbstractClient(long clientId, String name, String surname, long pesel, String adres) throws InvalidPeselException{
+    public AbstractClient(long clientId, String name, String surname, long pesel, String adres) {
         this.setClientId(clientId);
         this.setName(name);
         this.surname = surname;
-        if (!PeselValidator.isPeselValid(pesel)) {
-            throw new InvalidPeselException();
-        } else {
-            this.pesel = pesel;
-        }
+        this.pesel = pesel;
         this.setAdres(adres);
         this.accounts = new ArrayList<AbstractAccount>();
         System.out.println("Client created: " + clientId + " " + name + " " + surname + " " + pesel + " " + adres);

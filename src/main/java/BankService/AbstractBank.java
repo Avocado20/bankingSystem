@@ -15,6 +15,7 @@ public abstract class AbstractBank {
         this.bankId = bankId;
         System.out.println("Bank: " + bankId + " created");
         clients = new ArrayList<AbstractClient>();
+        accounts = new ArrayList<AbstractAccount>();
     }
 
     public boolean addClient (AbstractClient client) {

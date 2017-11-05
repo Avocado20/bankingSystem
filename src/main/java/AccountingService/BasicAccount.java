@@ -4,7 +4,6 @@ import BankService.AbstractClient;
 import InterestService.AbstractInterestMechanism;
 import InterestService.InterestsMechanism;
 
-import java.util.Date;
 
 public class BasicAccount extends AbstractAccount {
 
@@ -13,8 +12,8 @@ public class BasicAccount extends AbstractAccount {
     }
 
     public boolean closeAccount(AbstractAccount parentAccount) throws HasChildAccountException{
-        if (parentAccount == null) {
-            //doNothing
+        if (this.childAccounts != null) {
+            throw new HasChildAccountException();
         }
         this.isActive = false;
         return true;

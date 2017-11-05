@@ -9,6 +9,6 @@ public interface TransferInterface {
      * @return
      */
     boolean addMoney(long cashUnits);
-    boolean withdrawMoney(long cashUnit);
-    boolean makeTransfer(TransferInterface targetAccount, long cashUnit);
+    boolean withdrawMoney(long cashUnit) throws NotEnoughMoneyException;
+    boolean makeTransfer(TransferInterface targetAccount, long cashUnit) throws NotEnoughMoneyException;
 }

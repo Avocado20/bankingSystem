@@ -19,8 +19,12 @@ public class InvestmentAccount extends AbstractAccount {
 
     public boolean closeAccount(AbstractAccount parentAccount) throws HasChildAccountException {
         if (parentAccount != null) {
-            parentAccount.addMoney(this.getAmountOfMoney());
-            this.withdrawMoney(this.getAmountOfMoney());
+            try {
+                this.withdrawMoney(this.getAmountOfMoney());
+                parentAccount.addMoney(this.getAmountOfMoney());
+            } catch (NotEnoughMoneyException e) {
+                //do nothing
+            }
             parentAccount.removeChildAccount(this);
             this.isActive = false;
             return true;

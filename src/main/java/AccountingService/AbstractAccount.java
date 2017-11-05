@@ -14,7 +14,7 @@ public abstract class AbstractAccount implements TransferInterface {
 
     protected long accountId;
     protected boolean isActive;
-    private long amountOfMoney;
+    protected long amountOfMoney;
     protected long debit;
     protected InterestsMechanism interestsMechanism;
     protected AbstractClient owner;
@@ -26,12 +26,12 @@ public abstract class AbstractAccount implements TransferInterface {
     public AbstractAccount (long accountId, AbstractClient owner, int initialAmountOfMoney, int initialDebit, InterestsMechanism interestsMechanism, Date correctCloseAccount) {
         this.accountId = accountId;
         this.isActive = true;
-        this.setAmountOfMoney(initialAmountOfMoney);
+        this.amountOfMoney = initialAmountOfMoney;
         this.debit = initialDebit;
         this.owner = owner;
         this.interestsMechanism = interestsMechanism;
         this.correctCloseAccount = correctCloseAccount;
-        System.out.println("Account: " + accountId + " " + getAmountOfMoney() + " " + debit + " " + owner.getClientId());
+        this.historyOperations = new ArrayList<AbstractAccountOperation>();
     }
     
     public abstract boolean closeAccount(AbstractAccount parentAccount) throws HasChildAccountException;
@@ -42,13 +42,17 @@ public abstract class AbstractAccount implements TransferInterface {
         return true;
     };
 
-    public boolean withdrawMoney(long cashUnits) {
-        this.setAmountOfMoney(this.getAmountOfMoney() - cashUnits);
-        this.historyOperations.add(new ConcreteOperation(this.accountId, "witdraw Money: " + cashUnits));
+    public boolean withdrawMoney(long cashUnits) throws NotEnoughMoneyException {
+        if ( cashUnits > this.getAmountOfMoney()) {
+            throw new NotEnoughMoneyException();
+        } else {
+            this.setAmountOfMoney(this.getAmountOfMoney() - cashUnits);
+            this.historyOperations.add(new ConcreteOperation(this.accountId, "witdraw Money: " + cashUnits));
+        }
         return true;
     };
 
-    public boolean makeTransfer(TransferInterface targetAccount, long cashUnit) {
+    public boolean makeTransfer(TransferInterface targetAccount, long cashUnit) throws NotEnoughMoneyException{
         this.withdrawMoney(cashUnit);
         targetAccount.addMoney(cashUnit);
         this.historyOperations.add(new ConcreteOperation(this.accountId, "make Money transfer: " + cashUnit));
