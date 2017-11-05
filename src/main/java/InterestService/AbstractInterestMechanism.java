@@ -1,17 +1,34 @@
 package InterestService;
 
+import java.util.Date;
+
 public abstract class AbstractInterestMechanism implements InterestsMechanism{
 
-    protected double percentage;
-    protected int howManyCapitalisations;
+    private double percentage;
+    private int howManyCapitalisations;
+    private Date correctCloseDate;
 
-    public double generateInterest(int amountOfMoney, double percentage, int howManyCapitalisation) {
-        return amountOfMoney * howManyCapitalisation * Math.abs(percentage);
+
+    AbstractInterestMechanism(double percentage, int howManyCapitalisations, Date correctCloseDate) {
+        this.setPercentage(percentage);
+        this.setHowManyCapitalisations(howManyCapitalisations);
+        this.correctCloseDate =correctCloseDate;
+        System.out.println("Mechanism: " + percentage + " " + howManyCapitalisations);
     }
 
-    AbstractInterestMechanism(double percentage, int howManyCapitalisations) {
+    public double getPercentage() {
+        return percentage;
+    }
+
+    public void setPercentage(double percentage) {
         this.percentage = percentage;
+    }
+
+    public int getHowManyCapitalisations() {
+        return howManyCapitalisations;
+    }
+
+    public void setHowManyCapitalisations(int howManyCapitalisations) {
         this.howManyCapitalisations = howManyCapitalisations;
-        System.out.println("Mechanism: " + percentage + " " + howManyCapitalisations);
     }
 }

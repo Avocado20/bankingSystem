@@ -2,13 +2,13 @@ package ReportService;
 
 import java.util.Date;
 
-public abstract class AccountOperation {
+public abstract class AbstractAccountOperation {
 
     private long productId;
     private Date operationDate;
     private String operationDescription;
 
-    public AccountOperation (long productId, String operationDescription) {
+    public AbstractAccountOperation(long productId, String operationDescription) {
         this.productId = productId;
         this.operationDate = new Date();
         this.operationDescription = operationDescription;

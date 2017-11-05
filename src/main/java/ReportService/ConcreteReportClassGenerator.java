@@ -7,12 +7,10 @@ import java.util.List;
 public class ConcreteReportClassGenerator implements ReportGeneratorInterface {
 
     public Report createReport(List<AbstractAccount> accounts) {
-        String reportBody = "";
+        Report report  = new Report();
         for (AbstractAccount account : accounts) {
-            for (AccountOperation operation : account.getHistoryOperations()) {
-                reportBody += operation.toString() + "\n, ";
-            }
+            report.addListOperation(account.getHistoryOperations());
         }
-        return new Report(reportBody);
+        return report;
     }
 }

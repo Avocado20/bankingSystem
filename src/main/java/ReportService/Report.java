@@ -1,18 +1,34 @@
 package ReportService;
 
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
 public class Report {
 
-    private String report;
+    private Date preparationDate;
+    private List<AbstractAccountOperation> listOfOperations;
 
-    public Report(String reportString) {
-
+    public Report() {
+        this.preparationDate = new Date();
+        this.listOfOperations = new ArrayList();
     }
 
-    public String getReport() {
-        return report;
+    public boolean addListOperation(List<AbstractAccountOperation> operations) {
+        if (this.listOfOperations == null) {
+            this.listOfOperations = new ArrayList<AbstractAccountOperation>();
+        }
+        listOfOperations.addAll(operations);
+        return true;
     }
 
-    public void setReport(String report) {
-        this.report = report;
+    @Override
+    public String toString() {
+        String reportString = "";
+        for (AbstractAccountOperation operation : listOfOperations) {
+            reportString += operation.toString();
+        }
+        String mainInfo = "Data sporządzenia: " + preparationDate.getTime() + "\n";
+        return mainInfo + reportString;
     }
 }

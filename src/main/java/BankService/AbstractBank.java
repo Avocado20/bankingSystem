@@ -9,6 +9,7 @@ public abstract class AbstractBank {
 
     private long bankId;
     private List<AbstractClient> clients;
+    private List<AbstractAccount> accounts;
 
     public AbstractBank(long bankId) {
         this.bankId = bankId;
@@ -21,13 +22,9 @@ public abstract class AbstractBank {
         return true;
     }
 
-    public boolean openAccountForClient(long clientId, AbstractAccount account) {
-        for (AbstractClient client : clients) {
-            if (client.getClientId() == clientId) {
-                client.addAccount(account);
-                return true;
-            }
-        }
-        return false;
+    public boolean addAccount(AbstractAccount account) {
+        this.accounts.add(account);
+        return true;
     }
+
 }

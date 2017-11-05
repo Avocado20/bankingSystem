@@ -1,6 +1,7 @@
 package BankService;
 
 import AccountingService.AbstractAccount;
+import AccountingService.PeselPackage.PeselValidator;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,15 +11,19 @@ public class AbstractClient {
     private long clientId;
     private String name;
     private String surname;
-    private String pesel;
+    private long pesel;
     private String adres;
     private List<AbstractAccount> accounts;
 
-    public AbstractClient(long clientId, String name, String surname, String pesel, String adres) {
+    public AbstractClient(long clientId, String name, String surname, long pesel, String adres) throws InvalidPeselException{
         this.setClientId(clientId);
         this.setName(name);
         this.surname = surname;
-        this.setPesel(pesel);
+        if (!PeselValidator.isPeselValid(pesel)) {
+            throw new InvalidPeselException();
+        } else {
+            this.pesel = pesel;
+        }
         this.setAdres(adres);
         this.accounts = new ArrayList<AbstractAccount>();
         System.out.println("Client created: " + clientId + " " + name + " " + surname + " " + pesel + " " + adres);
@@ -40,11 +45,11 @@ public class AbstractClient {
         this.name = name;
     }
 
-    public String getPesel() {
+    public long getPesel() {
         return pesel;
     }
 
-    public void setPesel(String pesel) {
+    public void setPesel(long pesel) {
         this.pesel = pesel;
     }
 
