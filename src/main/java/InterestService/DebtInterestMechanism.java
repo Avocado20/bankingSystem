@@ -1,5 +1,7 @@
 package InterestService;
 
+import java.text.DecimalFormat;
+import java.text.ParseException;
 import java.util.Date;
 
 public class DebtInterestMechanism extends AbstractInterestMechanism implements InterestsMechanism {
@@ -8,8 +10,16 @@ public class DebtInterestMechanism extends AbstractInterestMechanism implements 
         super(percentage, howManyCapitalisations, correctCloseDate);
     }
 
-    public double generateInterest(int amountOfMoney, double percentage, int howManyCapitalisation) {
-        return amountOfMoney * howManyCapitalisation * percentage;
+    public double generateInterest(long amountOfMoney, double percentage, int howManyCapitalisation) {
+        double amountOfInterestNotRounded = amountOfMoney * (percentage / howManyCapitalisation);
+        try {
+            DecimalFormat df=new DecimalFormat("0.00");
+            String formate = df.format(amountOfInterestNotRounded);
+            return -(Double)df.parse(formate) ;
+        } catch (ParseException e ) {
+            return -amountOfInterestNotRounded;
+        }
+
     }
 
     public void setPercentage(double percentage) {

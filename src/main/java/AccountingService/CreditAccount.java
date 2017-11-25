@@ -8,7 +8,7 @@ import java.util.Date;
 
 public class CreditAccount extends AbstractAccount {
 
-    public CreditAccount(long id, AbstractClient owner, int initialAmountOfMoney, int initialDebit, InterestsMechanism interestsMechanism, Date correctCloseAccountDate) {
+    public CreditAccount(long id, AbstractClient owner, int initialAmountOfMoney, int initialDebit, AbstractInterestMechanism interestsMechanism, Date correctCloseAccountDate) {
         super(id, owner, initialAmountOfMoney, initialDebit, interestsMechanism, correctCloseAccountDate);
     }
 

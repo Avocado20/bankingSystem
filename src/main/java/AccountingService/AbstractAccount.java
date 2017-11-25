@@ -16,20 +16,20 @@ public abstract class AbstractAccount implements TransferInterface {
     protected boolean isActive;
     protected long amountOfMoney;
     protected long debit;
-    protected InterestsMechanism interestsMechanism;
+    private AbstractInterestMechanism interestsMechanism;
     protected AbstractClient owner;
     protected List<AbstractAccountOperation> historyOperations;
     protected List<AbstractAccount> childAccounts;
     private Date correctCloseAccount;
 
 
-    public AbstractAccount (long accountId, AbstractClient owner, int initialAmountOfMoney, int initialDebit, InterestsMechanism interestsMechanism, Date correctCloseAccount) {
+    public AbstractAccount (long accountId, AbstractClient owner, int initialAmountOfMoney, int initialDebit, AbstractInterestMechanism interestsMechanism, Date correctCloseAccount) {
         this.accountId = accountId;
         this.isActive = true;
         this.amountOfMoney = initialAmountOfMoney;
         this.debit = initialDebit;
         this.owner = owner;
-        this.interestsMechanism = interestsMechanism;
+        this.setInterestsMechanism(interestsMechanism);
         this.correctCloseAccount = correctCloseAccount;
         this.historyOperations = new ArrayList<AbstractAccountOperation>();
     }
@@ -86,5 +86,13 @@ public abstract class AbstractAccount implements TransferInterface {
 
     public void setAmountOfMoney(long amountOfMoney) {
         this.amountOfMoney = amountOfMoney;
+    }
+
+    public AbstractInterestMechanism getInterestsMechanism() {
+        return interestsMechanism;
+    }
+
+    public void setInterestsMechanism(AbstractInterestMechanism interestsMechanism) {
+        this.interestsMechanism = interestsMechanism;
     }
 }

@@ -9,7 +9,7 @@ import java.util.Date;
 public class InvestmentAccount extends AbstractAccount {
 
 
-    public InvestmentAccount(long id, AbstractClient owner, int initialAmountOfMoney, int initialDebit, InterestsMechanism interestsMechanism, Date correctCloseAccountDate) {
+    public InvestmentAccount(long id, AbstractClient owner, int initialAmountOfMoney, int initialDebit, AbstractInterestMechanism interestsMechanism, Date correctCloseAccountDate) {
         super(id, owner, initialAmountOfMoney, initialDebit, interestsMechanism, correctCloseAccountDate);
     }
 

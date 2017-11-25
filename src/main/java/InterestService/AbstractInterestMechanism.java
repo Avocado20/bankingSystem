@@ -2,7 +2,7 @@ package InterestService;
 
 import java.util.Date;
 
-public abstract class AbstractInterestMechanism implements InterestsMechanism{
+public abstract class AbstractInterestMechanism implements InterestsMechanism {
 
     private double percentage;
     private int howManyCapitalisations;
@@ -30,5 +30,9 @@ public abstract class AbstractInterestMechanism implements InterestsMechanism{
 
     public void setHowManyCapitalisations(int howManyCapitalisations) {
         this.howManyCapitalisations = howManyCapitalisations;
+    }
+
+    public Date getCorrectCloseDate() {
+        return correctCloseDate;
     }
 }

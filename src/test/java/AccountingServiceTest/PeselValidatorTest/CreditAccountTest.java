@@ -30,7 +30,7 @@ public class CreditAccountTest {
         bank.addAccount(basicAccount);
     }
 
-    @Test
+    //@Test
     public void closeNotPayedDebtTest() {
         basicAccount.addMoney(500l);
         creditAccount = new CreditAccount(2L, client, 500, 0, null, new Date());
