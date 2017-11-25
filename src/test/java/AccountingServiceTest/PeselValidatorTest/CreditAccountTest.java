@@ -3,6 +3,7 @@ package AccountingServiceTest.PeselValidatorTest;
 import AccountingService.AbstractAccount;
 import AccountingService.BasicAccount;
 import AccountingService.CreditAccount;
+import AccountingService.OperationService.AddMoneyOpeation;
 import BankService.AbstractBank;
 import BankService.AbstractClient;
 import BankService.ConcreteBank;
@@ -32,10 +33,12 @@ public class CreditAccountTest {
 
     //@Test
     public void closeNotPayedDebtTest() {
-        basicAccount.addMoney(500l);
+        AddMoneyOpeation addMoneyOpeation = new AddMoneyOpeation(basicAccount, 500);
+        addMoneyOpeation.execute();
         creditAccount = new CreditAccount(2L, client, 500, 0, null, new Date());
         basicAccount.addChildAccount(creditAccount);
-        creditAccount.addMoney(500l);
+        addMoneyOpeation = new AddMoneyOpeation(creditAccount, 500);
+        addMoneyOpeation.execute();
         boolean isClosed = creditAccount.closeAccount(basicAccount);
         assertTrue(isClosed);
 

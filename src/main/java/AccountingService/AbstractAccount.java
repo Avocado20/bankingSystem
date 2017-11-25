@@ -1,8 +1,8 @@
 package AccountingService;
 
+import AccountingService.OperationService.OperationInterface;
 import BankService.AbstractClient;
 import InterestService.AbstractInterestMechanism;
-import InterestService.InterestsMechanism;
 import ReportService.AbstractAccountOperation;
 import ReportService.ConcreteOperation;
 
@@ -10,9 +10,9 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public abstract class AbstractAccount implements TransferInterface {
+public abstract class AbstractAccount {
 
-    protected long accountId;
+    private long accountId;
     protected boolean isActive;
     protected long amountOfMoney;
     protected long debit;
@@ -36,28 +36,6 @@ public abstract class AbstractAccount implements TransferInterface {
     
     public abstract boolean closeAccount(AbstractAccount parentAccount) throws HasChildAccountException;
 
-    public boolean addMoney(long cashUnits) {
-        this.setAmountOfMoney(this.getAmountOfMoney() + cashUnits);
-        this.historyOperations.add(new ConcreteOperation(this.accountId, "add Money: " + cashUnits));
-        return true;
-    };
-
-    public boolean withdrawMoney(long cashUnits) throws NotEnoughMoneyException {
-        if ( cashUnits > this.getAmountOfMoney()) {
-            throw new NotEnoughMoneyException();
-        } else {
-            this.setAmountOfMoney(this.getAmountOfMoney() - cashUnits);
-            this.historyOperations.add(new ConcreteOperation(this.accountId, "witdraw Money: " + cashUnits));
-        }
-        return true;
-    };
-
-    public boolean makeTransfer(TransferInterface targetAccount, long cashUnit) throws NotEnoughMoneyException{
-        this.withdrawMoney(cashUnit);
-        targetAccount.addMoney(cashUnit);
-        this.historyOperations.add(new ConcreteOperation(this.accountId, "make Money transfer: " + cashUnit));
-        return true;
-    };
 
     public List<AbstractAccountOperation> getHistoryOperations() {
         return this.historyOperations;
@@ -94,5 +72,13 @@ public abstract class AbstractAccount implements TransferInterface {
 
     public void setInterestsMechanism(AbstractInterestMechanism interestsMechanism) {
         this.interestsMechanism = interestsMechanism;
+    }
+
+    public void addHistoryOperation(AbstractAccountOperation operation) {
+        this.historyOperations.add(operation);
+    }
+
+    public long getAccountId() {
+        return accountId;
     }
 }

@@ -1,6 +1,8 @@
 package AccountingServiceTest.PeselValidatorTest;
 
 import AccountingService.*;
+import AccountingService.OperationService.AddMoneyOpeation;
+import AccountingService.OperationService.WithdrawMoneyOperation;
 import BankService.*;
 import org.junit.Before;
 import org.junit.Test;
@@ -9,6 +11,7 @@ import org.mockito.Mockito;
 import java.util.Date;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 
 public class BasicAccountTest {
 
@@ -26,19 +29,22 @@ public class BasicAccountTest {
 
     @Test
     public void addMoneyToExistingBasicAccountTest() throws NotEnoughMoneyException {
-        basicAccount.addMoney(800L);
+        AddMoneyOpeation addMoneyOpeation = new AddMoneyOpeation(basicAccount, 800);
+        addMoneyOpeation.execute();
         assertEquals(1300L, basicAccount.getAmountOfMoney());
     }
 
     @Test
     public void withdrawMoneyFromAccountTest() throws NotEnoughMoneyException {
-        basicAccount.withdrawMoney(300L);
+        WithdrawMoneyOperation withdrawMoneyOperation = new WithdrawMoneyOperation(basicAccount, 300);
+        withdrawMoneyOperation.execute();
         assertEquals(200L, basicAccount.getAmountOfMoney());
     }
 
-    @Test(expected = NotEnoughMoneyException.class)
-    public void withdrawMoreMoneyThanInAccountTest() throws NotEnoughMoneyException {
-        basicAccount.withdrawMoney(800L);
+    @Test
+    public void withdrawMoreMoneyThanInAccountTest() {
+        WithdrawMoneyOperation withdrawMoneyOperation = new WithdrawMoneyOperation(basicAccount, 800);
+        assertFalse(withdrawMoneyOperation.execute());
     }
 
     @Test

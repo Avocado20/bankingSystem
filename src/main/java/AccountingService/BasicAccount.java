@@ -2,7 +2,6 @@ package AccountingService;
 
 import BankService.AbstractClient;
 import InterestService.AbstractInterestMechanism;
-import InterestService.InterestsMechanism;
 
 
 public class BasicAccount extends AbstractAccount {

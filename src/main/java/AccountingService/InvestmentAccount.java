@@ -1,5 +1,7 @@
 package AccountingService;
 
+import AccountingService.OperationService.AddMoneyOpeation;
+import AccountingService.OperationService.WithdrawMoneyOperation;
 import BankService.AbstractClient;
 import InterestService.AbstractInterestMechanism;
 import InterestService.InterestsMechanism;
@@ -19,12 +21,11 @@ public class InvestmentAccount extends AbstractAccount {
 
     public boolean closeAccount(AbstractAccount parentAccount) throws HasChildAccountException {
         if (parentAccount != null) {
-            try {
-                this.withdrawMoney(this.getAmountOfMoney());
-                parentAccount.addMoney(this.getAmountOfMoney());
-            } catch (NotEnoughMoneyException e) {
-                //do nothing
-            }
+            WithdrawMoneyOperation withdraw = new WithdrawMoneyOperation(this, (int)this.getAmountOfMoney());
+            withdraw.execute();
+            AddMoneyOpeation add = new AddMoneyOpeation(this, (int) this.getAmountOfMoney());
+            add.execute();
+
             parentAccount.removeChildAccount(this);
             this.isActive = false;
             return true;
