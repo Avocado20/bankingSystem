@@ -22,7 +22,7 @@ public class BasicAccountTest {
     @Before
     public void setup() {
         bank.addClient(client);
-        basicAccount = new BasicAccount(2L, client, 500, 0, null);
+        basicAccount = new BasicAccount(2L, client, 500, null);
         client.addAccount(basicAccount);
         bank.addAccount(basicAccount);
     }
@@ -54,7 +54,7 @@ public class BasicAccountTest {
 
     @Test(expected = HasChildAccountException.class)
     public void closeAccountWithChildTest() throws HasChildAccountException {
-        AbstractAccount childAccount = new InvestmentAccount(2l, client, 1000, 0, null, new Date());
+        AbstractAccount childAccount = new InvestmentAccount(2l, client, 1000,  null, new Date());
         basicAccount.addChildAccount(childAccount);
         basicAccount.closeAccount(null);
     }

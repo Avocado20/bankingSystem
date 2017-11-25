@@ -11,8 +11,8 @@ import java.util.Date;
 public class InvestmentAccount extends AbstractAccount {
 
 
-    public InvestmentAccount(long id, AbstractClient owner, int initialAmountOfMoney, int initialDebit, AbstractInterestMechanism interestsMechanism, Date correctCloseAccountDate) {
-        super(id, owner, initialAmountOfMoney, initialDebit, interestsMechanism, correctCloseAccountDate);
+    public InvestmentAccount(long id, AbstractClient owner, int initialAmountOfMoney, AbstractInterestMechanism interestsMechanism, Date correctCloseAccountDate) {
+        super(id, owner, initialAmountOfMoney, interestsMechanism, correctCloseAccountDate);
     }
 
     public boolean validateInterestMechanism(AbstractInterestMechanism mechanism) {

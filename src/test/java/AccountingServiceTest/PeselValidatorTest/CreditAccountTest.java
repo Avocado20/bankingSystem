@@ -26,7 +26,7 @@ public class CreditAccountTest {
     @Before
     public void setup() {
         bank.addClient(client);
-        basicAccount = new BasicAccount(2L, client, 500, 0, null);
+        basicAccount = new BasicAccount(2L, client, 500, null);
         client.addAccount(basicAccount);
         bank.addAccount(basicAccount);
     }
@@ -35,7 +35,7 @@ public class CreditAccountTest {
     public void closeNotPayedDebtTest() {
         AddMoneyOpeation addMoneyOpeation = new AddMoneyOpeation(basicAccount, 500);
         addMoneyOpeation.execute();
-        creditAccount = new CreditAccount(2L, client, 500, 0, null, new Date());
+        creditAccount = new CreditAccount(2L, client, 500,  null, new Date());
         basicAccount.addChildAccount(creditAccount);
         addMoneyOpeation = new AddMoneyOpeation(creditAccount, 500);
         addMoneyOpeation.execute();

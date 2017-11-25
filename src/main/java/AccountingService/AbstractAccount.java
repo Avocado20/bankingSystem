@@ -1,10 +1,8 @@
 package AccountingService;
 
-import AccountingService.OperationService.OperationInterface;
 import BankService.AbstractClient;
 import InterestService.AbstractInterestMechanism;
 import ReportService.AbstractAccountOperation;
-import ReportService.ConcreteOperation;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -14,21 +12,19 @@ public abstract class AbstractAccount {
 
     private long accountId;
     protected boolean isActive;
-    protected long amountOfMoney;
-    protected long debit;
+    protected int amountOfMoney;
     private AbstractInterestMechanism interestsMechanism;
-    protected AbstractClient owner;
+    private AbstractClient owner;
     protected List<AbstractAccountOperation> historyOperations;
     protected List<AbstractAccount> childAccounts;
     private Date correctCloseAccount;
 
 
-    public AbstractAccount (long accountId, AbstractClient owner, int initialAmountOfMoney, int initialDebit, AbstractInterestMechanism interestsMechanism, Date correctCloseAccount) {
+    public AbstractAccount (long accountId, AbstractClient owner, int initialAmountOfMoney, AbstractInterestMechanism interestsMechanism, Date correctCloseAccount) {
         this.accountId = accountId;
         this.isActive = true;
         this.amountOfMoney = initialAmountOfMoney;
-        this.debit = initialDebit;
-        this.owner = owner;
+        this.setOwner(owner);
         this.setInterestsMechanism(interestsMechanism);
         this.correctCloseAccount = correctCloseAccount;
         this.historyOperations = new ArrayList<AbstractAccountOperation>();
@@ -58,11 +54,11 @@ public abstract class AbstractAccount {
 
     public abstract boolean validateInterestMechanism(AbstractInterestMechanism mechanism);
 
-    public long getAmountOfMoney() {
+    public int getAmountOfMoney() {
         return amountOfMoney;
     }
 
-    public void setAmountOfMoney(long amountOfMoney) {
+    public void setAmountOfMoney(int amountOfMoney) {
         this.amountOfMoney = amountOfMoney;
     }
 
@@ -80,5 +76,14 @@ public abstract class AbstractAccount {
 
     public long getAccountId() {
         return accountId;
+    }
+
+
+    public AbstractClient getOwner() {
+        return owner;
+    }
+
+    public void setOwner(AbstractClient owner) {
+        this.owner = owner;
     }
 }
