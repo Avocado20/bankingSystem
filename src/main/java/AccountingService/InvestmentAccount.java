@@ -4,15 +4,15 @@ import AccountingService.OperationService.AddMoneyOpeation;
 import AccountingService.OperationService.WithdrawMoneyOperation;
 import BankService.AbstractClient;
 import InterestService.AbstractInterestMechanism;
-import InterestService.InterestsMechanism;
+import ProductReportService.AccountVisitor;
 
 import java.util.Date;
 
 public class InvestmentAccount extends AbstractAccount {
 
 
-    public InvestmentAccount(long id, AbstractClient owner, int initialAmountOfMoney, AbstractInterestMechanism interestsMechanism, Date correctCloseAccountDate) {
-        super(id, owner, initialAmountOfMoney, interestsMechanism, correctCloseAccountDate);
+    public InvestmentAccount(int bankAccountId, long id, AbstractClient owner, int initialAmountOfMoney, AbstractInterestMechanism interestsMechanism, Date correctCloseAccountDate) {
+        super(bankAccountId, id, owner, initialAmountOfMoney, interestsMechanism, correctCloseAccountDate);
     }
 
     public boolean validateInterestMechanism(AbstractInterestMechanism mechanism) {
@@ -36,5 +36,9 @@ public class InvestmentAccount extends AbstractAccount {
             this.isActive = false;
             return true;
         }
+    }
+
+    public String accept(AccountVisitor accountVisitor) {
+        return accountVisitor.visit(this);
     }
 }

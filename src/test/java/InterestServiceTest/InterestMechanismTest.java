@@ -27,7 +27,7 @@ public class InterestMechanismTest {
     public void countDebtInterestTest() throws NotEnoughMoneyException {
         bank.addClient(client);
         DebtInterestMechanism debtInterestMechanism = new DebtInterestMechanism(0.1, 12, new Date());
-        creditAccount = new CreditAccount(2L, client, 800,  debtInterestMechanism, new Date());
+        creditAccount = new CreditAccount(1, 2L, client, 800,  debtInterestMechanism, new Date());
         bank.addAccount(creditAccount);
         AbstractInterestMechanism interestsMechanism = creditAccount.getInterestsMechanism();
         long amountOfMoney = creditAccount.getAmountOfMoney();
@@ -41,7 +41,7 @@ public class InterestMechanismTest {
     public void countInvestInterestTest() throws NotEnoughMoneyException {
         bank.addClient(client);
         InvestInterestMechanism interestsMechanism = new InvestInterestMechanism(0.1, 12, new Date());
-        investmentAccount = new InvestmentAccount(2L, client, 800,  interestsMechanism, new Date());
+        investmentAccount = new InvestmentAccount(1, 2L, client, 800,  interestsMechanism, new Date());
         bank.addAccount(investmentAccount);
         long amountOfMoney = investmentAccount.getAmountOfMoney();
         double percentage = interestsMechanism.getPercentage();

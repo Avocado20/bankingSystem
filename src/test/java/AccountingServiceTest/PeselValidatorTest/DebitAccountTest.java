@@ -22,11 +22,11 @@ public class DebitAccountTest {
 
     @Test
     public void debitAccountOperationTest() {
-        debitAccount = new DebitAccount(new BasicAccount(4l, client,1000, null), 500);
+        debitAccount = new DebitAccount(new BasicAccount(1, 4l, client,1000, null), 500);
         WithdrawMoneyOperation withdrawMoneyOperation = new WithdrawMoneyOperation(debitAccount, 1200);
         withdrawMoneyOperation.execute();
-        assertEquals(0, debitAccount.getAmountOfMoney());
+        BasicAccount bsc = (BasicAccount) debitAccount;
+        assertEquals(300, bsc.getAmountOfMoney());
         assertEquals(300, debitAccount.getDebit());
-        //popraw tę wypłatę!
     }
 }

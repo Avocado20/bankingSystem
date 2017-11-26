@@ -2,6 +2,7 @@ package AccountingService;
 
 import BankService.AbstractClient;
 import InterestService.AbstractInterestMechanism;
+import ProductReportService.AccountVisitor;
 import ReportService.AbstractAccountOperation;
 
 import java.util.ArrayList;
@@ -10,6 +11,7 @@ import java.util.List;
 
 public abstract class AbstractAccount {
 
+    private int bankAccountId;
     private long accountId;
     protected boolean isActive;
     protected int amountOfMoney;
@@ -20,7 +22,8 @@ public abstract class AbstractAccount {
     private Date correctCloseAccount;
 
 
-    public AbstractAccount (long accountId, AbstractClient owner, int initialAmountOfMoney, AbstractInterestMechanism interestsMechanism, Date correctCloseAccount) {
+    public AbstractAccount (int bankAccountId, long accountId, AbstractClient owner, int initialAmountOfMoney, AbstractInterestMechanism interestsMechanism, Date correctCloseAccount) {
+        this.bankAccountId = bankAccountId;
         this.accountId = accountId;
         this.isActive = true;
         this.amountOfMoney = initialAmountOfMoney;
@@ -58,8 +61,9 @@ public abstract class AbstractAccount {
         return amountOfMoney;
     }
 
-    public void setAmountOfMoney(int amountOfMoney) {
+    public boolean  setAmountOfMoney(int amountOfMoney) {
         this.amountOfMoney = amountOfMoney;
+        return true;
     }
 
     public AbstractInterestMechanism getInterestsMechanism() {
@@ -86,4 +90,15 @@ public abstract class AbstractAccount {
     public void setOwner(AbstractClient owner) {
         this.owner = owner;
     }
+
+    public int getBankAccountId() {
+        return bankAccountId;
+    }
+
+    public void setBankAccountId(int bankAccountId) {
+        this.bankAccountId = bankAccountId;
+    }
+
+    public abstract String accept(AccountVisitor accountVisitor);
+
 }

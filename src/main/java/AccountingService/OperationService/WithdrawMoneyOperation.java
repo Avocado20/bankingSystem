@@ -18,6 +18,7 @@ public class WithdrawMoneyOperation implements OperationInterface{
         if ( cashUnits > this.getAbstractAccount().getAmountOfMoney()) {
             return false;
         } else {
+
             this.getAbstractAccount().setAmountOfMoney(this.getAbstractAccount().getAmountOfMoney() - cashUnits);
             this.getAbstractAccount().addHistoryOperation(new ConcreteOperation(this.getAbstractAccount().getAccountId(), "witdraw Money: " + cashUnits));
         }

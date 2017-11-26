@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+//Teraz ta klasa jest do wyrzucenia, bo nie można sporządzić raportów z kont, a jedynie z operacji.
 public class Report {
 
     private Date preparationDate;

@@ -2,14 +2,14 @@ package AccountingService;
 
 import BankService.AbstractClient;
 import InterestService.AbstractInterestMechanism;
-import InterestService.InterestsMechanism;
+import ProductReportService.AccountVisitor;
 
 import java.util.Date;
 
 public class CreditAccount extends AbstractAccount {
 
-    public CreditAccount(long id, AbstractClient owner, int initialAmountOfMoney, AbstractInterestMechanism interestsMechanism, Date correctCloseAccountDate) {
-        super(id, owner, initialAmountOfMoney, interestsMechanism, correctCloseAccountDate);
+    public CreditAccount(int bankAccountId, long id, AbstractClient owner, int initialAmountOfMoney, AbstractInterestMechanism interestsMechanism, Date correctCloseAccountDate) {
+        super(bankAccountId, id, owner, initialAmountOfMoney, interestsMechanism, correctCloseAccountDate);
     }
 
     public boolean validateInterestMechanism(AbstractInterestMechanism mechanism) {
@@ -24,5 +24,9 @@ public class CreditAccount extends AbstractAccount {
         } else {
             return false;
         }
+    }
+
+    public String accept(AccountVisitor accountVisitor) {
+        return accountVisitor.visit(this);
     }
 }
