@@ -14,7 +14,6 @@ public class WithdrawMoneyOperation implements OperationInterface{
     }
 
     public boolean execute() {
-
         if ( cashUnits > this.getAbstractAccount().getAmountOfMoney()) {
             return false;
         } else {
