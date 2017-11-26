@@ -2,14 +2,14 @@
 
 ## Zastosowane wzorce projektowe:
 
-### Command
+* ### Command
   AccountingService->OperationService wszystkie operacje implementują interfejs OperationInterface
-### State
+* ### State
   InterestService -> AbstractInterestMechanism jest wrzucony do każdego typu konta i można go dowolnie podmieniać w każdym koncie.
-### Dekorator
+* ### Dekorator
   AccountingService-> DebitAccount jest dekoratorem zwykłego konta. Uzupełnia jego działanie o debet
-### Mediator
+* ### Mediator
   OperationService -> InterbankTransferOperation wykorzystuje klasę KIR, aby dokonać przelewu na konto z innego banku.
-### Visitor
+* ### Visitor
   ProductReportService -> ReportAccountGenerator wykorzystuje visitora, którzy przechodzi po wszystkich typach kont i robi z nich raport.
 
