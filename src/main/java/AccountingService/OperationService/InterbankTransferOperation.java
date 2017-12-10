@@ -2,7 +2,6 @@ package AccountingService.OperationService;
 
 import AccountingService.AbstractAccount;
 import BankService.KIR;
-import ReportService.ConcreteOperation;
 
 public class InterbankTransferOperation implements OperationInterface {
 

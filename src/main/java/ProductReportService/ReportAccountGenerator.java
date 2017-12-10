@@ -14,18 +14,26 @@ public class ReportAccountGenerator {
     }
 
     public void addAccount(AbstractAccount account) {
-        this.basicAccounts.add(account);
+        if (account != null) {
+            this.basicAccounts.add(account);
+        }
     }
 
-    public String generateReport() {
-        AccountVisitor accountVisitor = new AccountVisitor();
-        String report = "";
-
+    public String generateSelectReport() {
+        AccountSelectibleVisitor accountSelectibleVisitor = new AccountSelectibleVisitor();
         for(AbstractAccount account: basicAccounts) {
-            report += account.accept(accountVisitor);
+            account.accept(accountSelectibleVisitor);
         }
-        System.out.println(report);
-        return report;
+        return accountSelectibleVisitor.getReport();
+    }
+
+    public String generateAgregateReport() {
+        AccountAgregableVisitor accountAgregableVisitor = new AccountAgregableVisitor();
+
+        for (AbstractAccount account: basicAccounts) {
+            account.accept(accountAgregableVisitor);
+        }
+        return accountAgregableVisitor.getReport();
     }
 
 }

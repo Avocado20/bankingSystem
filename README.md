@@ -11,5 +11,4 @@
 * ### Mediator
   OperationService -> InterbankTransferOperation wykorzystuje klasę KIR, aby dokonać przelewu na konto z innego banku.
 * ### Visitor
-  ProductReportService -> ReportAccountGenerator wykorzystuje visitora, którzy przechodzi po wszystkich typach kont i robi z nich raport.
-
+  ProductReportService -> ReportAccountGenerator wykorzystuje Visitora do wygenerowania dwóch rodzajów raportów: AccountAgregableReport oraz AccountSelectibleReport.

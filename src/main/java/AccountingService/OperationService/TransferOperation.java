@@ -1,7 +1,6 @@
 package AccountingService.OperationService;
 
 import AccountingService.AbstractAccount;
-import ReportService.ConcreteOperation;
 
 public class TransferOperation implements OperationInterface {
 

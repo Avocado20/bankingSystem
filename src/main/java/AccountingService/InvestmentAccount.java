@@ -4,6 +4,7 @@ import AccountingService.OperationService.AddMoneyOpeation;
 import AccountingService.OperationService.WithdrawMoneyOperation;
 import BankService.AbstractClient;
 import InterestService.AbstractInterestMechanism;
+import ProductReportService.AccountSelectibleVisitor;
 import ProductReportService.AccountVisitor;
 
 import java.util.Date;
@@ -38,7 +39,7 @@ public class InvestmentAccount extends AbstractAccount {
         }
     }
 
-    public String accept(AccountVisitor accountVisitor) {
-        return accountVisitor.visit(this);
+    public void accept(AccountVisitor accountSelectibleVisitor) {
+        accountSelectibleVisitor.visit(this);
     }
 }

@@ -1,6 +1,8 @@
 package AccountingService;
 
+import ProductReportService.AccountSelectibleVisitor;
 import ProductReportService.AccountVisitor;
+import ProductReportService.Visitorable;
 
 public class DebitAccount extends BasicAccount {
 
@@ -33,7 +35,7 @@ public class DebitAccount extends BasicAccount {
         this.debit = debit;
     }
 
-    public String accept(AccountVisitor accountVisitor) {
-        return accountVisitor.visit(this);
+    public void accept(AccountVisitor accountSelectibleVisitor) {
+        accountSelectibleVisitor.visit(this);
     }
 }

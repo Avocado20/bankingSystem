@@ -2,7 +2,9 @@ package AccountingService;
 
 import BankService.AbstractClient;
 import InterestService.AbstractInterestMechanism;
+import ProductReportService.AccountSelectibleVisitor;
 import ProductReportService.AccountVisitor;
+import ProductReportService.Visitorable;
 
 import java.util.Date;
 
@@ -26,7 +28,7 @@ public class CreditAccount extends AbstractAccount {
         }
     }
 
-    public String accept(AccountVisitor accountVisitor) {
-        return accountVisitor.visit(this);
+    public void accept(AccountVisitor accountSelectibleVisitor) {
+        accountSelectibleVisitor.visit(this);
     }
 }

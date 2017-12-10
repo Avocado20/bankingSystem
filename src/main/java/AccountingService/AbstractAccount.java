@@ -2,14 +2,16 @@ package AccountingService;
 
 import BankService.AbstractClient;
 import InterestService.AbstractInterestMechanism;
+import ProductReportService.AccountSelectibleVisitor;
+import AccountingService.OperationService.AbstractAccountOperation;
 import ProductReportService.AccountVisitor;
-import ReportService.AbstractAccountOperation;
+import ProductReportService.Visitorable;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public abstract class AbstractAccount {
+public abstract class AbstractAccount implements Visitorable {
 
     private int bankAccountId;
     private long accountId;
@@ -99,6 +101,6 @@ public abstract class AbstractAccount {
         this.bankAccountId = bankAccountId;
     }
 
-    public abstract String accept(AccountVisitor accountVisitor);
+    public abstract void accept(AccountVisitor accountSelectibleVisitor);
 
 }

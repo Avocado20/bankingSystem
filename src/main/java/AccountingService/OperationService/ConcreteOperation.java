@@ -1,4 +1,4 @@
-package ReportService;
+package AccountingService.OperationService;
 
 public class ConcreteOperation extends AbstractAccountOperation {
 
